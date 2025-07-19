@@ -1,13 +1,14 @@
-# CYBERTECH ACADEMY - IT教育紹介サイト
+# texx.inc - Next Generation AI Education Platform
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deploy-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
+![Version](https://img.shields.io/badge/version-2.0-purple)
 
-サイバーパンク風のIT教育紹介サイトです。ダークテーマとグリッチエフェクトが特徴的なデザインになっています。
+最先端のAI教育を提供するtexx.incの公式サイト。モダンなグラスモーフィズムデザインと動的なアニメーションが特徴です。
 
 ## 🚀 デモサイト
 
-GitHub Pages: `https://YOUR_USERNAME.github.io/cybertech-academy/`
+GitHub Pages: https://sparkminan.github.io/cybertech-academy/
 
 ## ✨ 特徴
 
@@ -64,9 +65,12 @@ cybertech-academy/
 
 ```css
 :root {
-    --primary-color: #00ff88;    /* メインカラー（緑） */
-    --secondary-color: #ff00ff;   /* サブカラー（紫） */
-    --accent-color: #00ffff;      /* アクセントカラー（シアン） */
+    --primary-color: #00ff88;     /* メインカラー（グリーン） */
+    --secondary-color: #7c3aed;   /* サブカラー（パープル） */
+    --accent-color: #06b6d4;      /* アクセントカラー（シアン） */
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+    --gradient-3: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
 }
 ```
 
@@ -74,10 +78,42 @@ cybertech-academy/
 
 `index.html` の各セクションを編集してコンテンツをカスタマイズできます。
 
+## 🎢 アニメーション
+
+追加された主なアニメーション：
+
+- **パララックススクロール**: ヒーローとスケジュールセクション
+- **リップルエフェクト**: 価格カードホバー時
+- **パルスアニメーション**: タイムラインの点
+- **グラデーションシフト**: テストバナー
+- **フェードイン**: 各要素の段階的出現
+
 ## 🔒 セキュリティ
 
 - Webhook URLなどの機密情報は **絶対に** コミットしないでください
-- フォーム処理にはFormspreeなどの外部サービスを使用してください
+- フォーム処理にはFormspreeを使用（Slack連携対応）
+
+## 🎓 texx.inc について
+
+### 👥 共同代表
+- **spark**: 技術統括・プロダクト開発
+- **minta**: ビジネス開発・マーケティング
+
+### 🏢 企業情報
+- 設立: 2024年1月
+- 所在地: 東京都渋谷区神宮前6-19-14
+- 連絡先: contact@texx.inc
+
+## 📑 更新履歴
+
+### v2.0 (2025-01-19)
+- 🎨 デザイン全面リニューアル
+- 🚀 アニメーション機能強化
+- 📚 AIコースへの完全移行
+- 💰 料金体系・スケジュール追加
+
+### v1.0 (2025-01-19)
+- 🎆 初回リリース
 
 ## 📝 ライセンス
 

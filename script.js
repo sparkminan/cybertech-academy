@@ -146,6 +146,30 @@ document.querySelectorAll('.course-card').forEach(card => {
 // ページ読み込み時のアニメーション
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
+    
+    // スケジュールカードのアニメーション
+    const scheduleCards = document.querySelectorAll('.schedule-card, .pricing-card');
+    scheduleCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+        setTimeout(() => {
+            card.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 300 + index * 200);
+    });
+    
+    // タイムラインアイテムのアニメーション
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-30px)';
+        setTimeout(() => {
+            item.style.transition = 'all 0.6s ease-out';
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        }, 500 + index * 100);
+    });
 });
 
 // マトリックス風背景エフェクト
@@ -233,3 +257,38 @@ setInterval(() => {
         }
     });
 }, 3000);
+
+// パララックス効果
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.hero, .schedule');
+    
+    parallaxElements.forEach(el => {
+        const speed = el.classList.contains('hero') ? 0.5 : 0.3;
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+
+// 価格カードのホバーエフェクト
+document.querySelectorAll('.pricing-item').forEach(item => {
+    item.addEventListener('mouseenter', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const ripple = document.createElement('div');
+        ripple.style.position = 'absolute';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.style.width = '0';
+        ripple.style.height = '0';
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(0, 255, 136, 0.3)';
+        ripple.style.transform = 'translate(-50%, -50%)';
+        ripple.style.animation = 'ripple 0.6s ease-out';
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    });
+});
