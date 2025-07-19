@@ -162,6 +162,8 @@ header {
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    will-change: transform;
 }
 
 .hero::before {
@@ -360,6 +362,8 @@ section {
     background-color: var(--bg-darker);
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 5;
 }
 
 .course-grid {
@@ -443,6 +447,8 @@ section {
 /* Features */
 .features {
     background-color: var(--bg-dark);
+    position: relative;
+    z-index: 15;
 }
 
 .features-grid {
@@ -485,6 +491,8 @@ section {
     background-color: var(--bg-darker);
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 20;
 }
 
 .testimonial-grid {
@@ -526,6 +534,8 @@ section {
 /* Contact */
 .contact {
     background-color: var(--bg-dark);
+    position: relative;
+    z-index: 30;
 }
 
 .contact-content {
@@ -612,6 +622,7 @@ section {
     background: linear-gradient(180deg, var(--bg-dark) 0%, #0a1628 100%);
     padding: 100px 0;
     position: relative;
+    z-index: 10;
 }
 
 .schedule::before {

@@ -258,15 +258,15 @@ setInterval(() => {
     });
 }, 3000);
 
-// パララックス効果
+// パララックス効果（修正版：heroセクションのみに適用）
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.hero, .schedule');
+    const hero = document.querySelector('.hero');
     
-    parallaxElements.forEach(el => {
-        const speed = el.classList.contains('hero') ? 0.5 : 0.3;
-        el.style.transform = `translateY(${scrolled * speed}px)`;
-    });
+    if (hero) {
+        // heroセクションのみにパララックス効果を適用
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
 });
 
 // 価格カードのホバーエフェクト
