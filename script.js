@@ -74,8 +74,7 @@ contactForm.addEventListener('submit', async (e) => {
     
     try {
         // Formspreeエンドポイント（GitHub Pages用）
-        // 注意: Formspreeアカウント作成後、ここにあなたのエンドポイントを入力
-        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/manbnrpa';
         
         const response = await fetch(FORMSPREE_ENDPOINT, {
             method: 'POST',
