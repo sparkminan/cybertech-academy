@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - texx.inc | Next-Gen AI Education Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-page {
+            min-height: 100vh;
+            padding-top: 140px;
+            background-color: var(--bg-dark);
+        }
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 100px;
+        }
+        .legal-content h1 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .legal-content h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .legal-content h3 {
+            color: var(--accent-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.3rem;
+        }
+        .legal-content p, .legal-content li {
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .legal-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .highlight-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .team-member {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+        .team-member h3 {
+            margin-bottom: 0.5rem;
+        }
+        .team-member .role {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .back-button:hover {
+            transform: translateX(-5px);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">
+        <div class="test-banner-content">
+            <span class="blink">●</span> TEST ENVIRONMENT <span class="blink">●</span> This is a demonstration site only
+        </div>
+    </div>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo"><span class="logo-accent">texx</span>.inc</div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="index.html#courses">コース</a></li>
+                        <li><a href="index.html#features">特徴</a></li>
+                        <li><a href="index.html#schedule">スケジュール・料金</a></li>
+                        <li><a href="index.html#testimonials">受講生の声</a></li>
+                        <li><a href="index.html#contact">お問い合わせ</a></li>
+                    </ul>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="legal-page">
+        <div class="legal-content">
+            <a href="index.html" class="back-button">← ホームに戻る</a>
+            
+            <h1 class="glitch" data-text="ABOUT TEXX.INC">ABOUT TEXX.INC</h1>
+            
+            <div class="highlight-box">
+                <h2>Our Mission</h2>
+                <p>texx.incは、AI時代を生き抜くエンジニアを育成する次世代教育プラットフォームです。最先端のAI技術と実践的なプロジェクトベース学習を通じて、即戦力となるデジタル人材を輩出します。</p>
+            </div>
+
+            <h2>Company Overview</h2>
+            <p>2024年1月、AI教育の革新を目指して設立されたtexx.incは、従来のプログラミングスクールとは一線を画す、実践重視の教育プログラムを提供しています。</p>
+            
+            <h3>私たちの特徴</h3>
+            <ul>
+                <li>実際の企業プロジェクトを題材とした実践的カリキュラム</li>
+                <li>現役AIエンジニアによる直接指導</li>
+                <li>最新のAIツールとフレームワークの活用</li>
+                <li>少人数制によるきめ細かなサポート</li>
+                <li>卒業後の就職・独立支援プログラム</li>
+            </ul>
+
+            <h2>Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>spark</h3>
+                    <p class="role">Co-Founder & CTO</p>
+                    <p>10年以上のAI開発経験を持つテクニカルリーダー。大手テック企業でのAIプロダクト開発を経て、教育分野での革新を目指しtexx.incを共同創業。</p>
+                </div>
+                <div class="team-member">
+                    <h3>minta</h3>
+                    <p class="role">Co-Founder & CEO</p>
+                    <p>EdTech分野での豊富な経験を持つビジネスリーダー。教育×テクノロジーの可能性を追求し、新しい学習体験の創造に情熱を注ぐ。</p>
+                </div>
+            </div>
+
+            <h2>Our Approach</h2>
+            <div class="highlight-box">
+                <h3>実践重視の教育哲学</h3>
+                <p>「理論は実践の中で学ぶ」という信念のもと、実際のプロダクト開発を通じて技術を習得。単なる知識の詰め込みではなく、問題解決能力と創造性を育成します。</p>
+            </div>
+
+            <h3>カリキュラムの特徴</h3>
+            <ul>
+                <li><strong>プロジェクトベース学習</strong>: 実際の開発プロジェクトを通じて学習</li>
+                <li><strong>ペアプログラミング</strong>: チーム開発スキルの向上</li>
+                <li><strong>コードレビュー文化</strong>: プロフェッショナルな開発習慣の定着</li>
+                <li><strong>最新技術への対応</strong>: 常に最新のAI技術トレンドをキャッチアップ</li>
+            </ul>
+
+            <h2>Our Values</h2>
+            <div class="team-grid">
+                <div class="highlight-box">
+                    <h3>Innovation</h3>
+                    <p>常に新しい技術と教育手法を探求し、最高の学習体験を提供します。</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>Excellence</h3>
+                    <p>妥協のない品質へのこだわりと、継続的な改善への取り組み。</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>Community</h3>
+                    <p>学習者同士が互いに成長し合える、活発なコミュニティの構築。</p>
+                </div>
+            </div>
+
+            <h2>Contact Information</h2>
+            <div class="highlight-box">
+                <p><strong>株式会社texx</strong></p>
+                <p>〒150-0001 東京都渋谷区神宮前6-19-14</p>
+                <p>Email: contact@texx.inc</p>
+                <p>Tel: 03-6805-1829</p>
+                <p>営業時間: 平日 10:00-19:00</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 texx.inc - Next Generation AI Education. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="about.html">About</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
