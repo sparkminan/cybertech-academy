@@ -2,7 +2,7 @@
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deploy-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Version](https://img.shields.io/badge/version-2.0-purple)
+![Version](https://img.shields.io/badge/version-3.0-purple)
 
 最先端のAI教育を提供するtexx.incの公式サイト。モダンなグラスモーフィズムデザインと動的なアニメーションが特徴です。
 
@@ -17,6 +17,8 @@ GitHub Pages: https://sparkminan.github.io/cybertech-academy/
 - ⚡ グリッチエフェクトアニメーション
 - 📱 レスポンシブデザイン対応
 - 📨 お問い合わせフォーム（Slack通知連携可能）
+- 📚 詳細なコースページ（NEW!）
+- 🔒 プライバシーポリシー・利用規約ページ（NEW!）
 
 ## 🛠️ 技術スタック
 
@@ -24,6 +26,27 @@ GitHub Pages: https://sparkminan.github.io/cybertech-academy/
 - CSS3 (カスタムプロパティ、アニメーション)
 - Vanilla JavaScript
 - Formspree (フォーム処理)
+- Node.js (ローカル開発用)
+
+## 🎓 提供コース
+
+### 1. 生成AIプロダクト開発コース
+- **期間**: 12週間（3ヶ月）
+- **料金**: ¥398,000
+- **内容**: ChatGPT/Claude API、RAGシステム、プロダクション展開
+- **対象**: AIプロダクトを開発したいエンジニア
+
+### 2. Discordコミュニティ開発コース
+- **期間**: 8週間（2ヶ月）
+- **料金**: ¥298,000
+- **内容**: Discord.js v14、Bot開発、AI連携
+- **対象**: コミュニティ管理を自動化したい開発者
+
+### 3. AIエージェント開発コース
+- **期間**: 16週間（4ヶ月）
+- **料金**: ¥498,000
+- **内容**: LangChain、AutoGPT、マルチエージェントシステム
+- **対象**: 自律型AIシステムを構築したい上級者
 
 ## 📦 セットアップ
 
@@ -50,12 +73,45 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 
 ```
 cybertech-academy/
-├── index.html          # メインページ
-├── style.css           # スタイルシート
-├── script.js           # JavaScriptファイル
-├── .gitignore          # Git除外設定
-└── README.md           # このファイル
+├── index.html              # メインページ
+├── style.css               # スタイルシート
+├── script.js               # JavaScriptファイル
+├── course-ai-product.html  # 生成AIプロダクト開発コース詳細
+├── course-discord.html     # Discordコミュニティ開発コース詳細
+├── course-ai-agent.html    # AIエージェント開発コース詳細
+├── about.html              # 会社概要ページ
+├── privacy.html            # プライバシーポリシー
+├── terms.html              # 利用規約
+├── local-server.js         # ローカルテスト用サーバー（開発用）
+├── .gitignore              # Git除外設定
+└── README.md               # このファイル
 ```
+
+## 📖 ページ構成
+
+### メインページ
+- **index.html**: トップページ（コース一覧、料金、お問い合わせ）
+
+### コース詳細ページ
+- **course-ai-product.html**: 生成AIプロダクト開発（12週間プログラム）
+  - LLM/RAGシステム構築
+  - 実践的なプロジェクト開発
+  - ¥398,000
+
+- **course-discord.html**: Discordコミュニティ開発（8週間プログラム）
+  - Discord.js v14マスター
+  - Bot開発とコミュニティ管理
+  - ¥298,000
+
+- **course-ai-agent.html**: AIエージェント開発（16週間プログラム）
+  - LangChain/AutoGPT活用
+  - 自律型エージェント構築
+  - ¥498,000
+
+### 法的ページ
+- **about.html**: texx.incについて、チーム紹介
+- **privacy.html**: 個人情報保護方針
+- **terms.html**: サービス利用規約
 
 ## 🎨 カスタマイズ
 
@@ -80,13 +136,17 @@ cybertech-academy/
 
 ## 🎢 アニメーション
 
-追加された主なアニメーション：
-
-- **パララックススクロール**: ヒーローとスケジュールセクション
+### メインページ
+- **マトリックス背景**: リアルタイムで流れる文字エフェクト
+- **グリッチエフェクト**: タイトルのサイバーパンク演出
 - **リップルエフェクト**: 価格カードホバー時
 - **パルスアニメーション**: タイムラインの点
 - **グラデーションシフト**: テストバナー
-- **フェードイン**: 各要素の段階的出現
+
+### コースページ固有のアニメーション
+- **course-ai-product.html**: グラデーションアニメーションタイトル
+- **course-discord.html**: Discord風パーティクルエフェクト
+- **course-ai-agent.html**: インタラクティブなニューラルネットワーク表示
 
 ## 🔒 セキュリティ
 
@@ -105,6 +165,15 @@ cybertech-academy/
 - 連絡先: contact@texx.inc
 
 ## 📑 更新履歴
+
+### v3.0 (2025-01-19)
+- 📚 各コースの詳細ページを追加
+  - 生成AIプロダクト開発（12週間カリキュラム）
+  - Discordコミュニティ開発（8週間カリキュラム）
+  - AIエージェント開発（16週間カリキュラム）
+- 📖 法的ページの追加（About/Privacy/Terms）
+- 🎨 コース別のユニークなアニメーション実装
+- 🔗 メインページからの導線改善
 
 ### v2.0 (2025-01-19)
 - 🎨 デザイン全面リニューアル
