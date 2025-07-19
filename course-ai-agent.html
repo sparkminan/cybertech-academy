@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIエージェント開発コース - texx.inc</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .course-hero {
+            min-height: 100vh;
+            padding-top: 140px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1f0f3f 50%, #0f2f3f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+        .neuron {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        .synapse {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            transform-origin: left center;
+            animation: pulse-synapse 3s infinite;
+        }
+        @keyframes pulse-synapse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .course-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .course-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .course-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: gradient-shift 5s ease infinite;
+        }
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .course-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .tech-badge {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid var(--accent-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .tech-badge:hover {
+            background: var(--accent-color);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+        }
+        .agent-showcase {
+            background: var(--bg-darker);
+            padding: 80px 0;
+        }
+        .agent-demo {
+            background: var(--glass-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .agent-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .flow-step {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+        .flow-step:last-child::after {
+            display: none;
+        }
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+        .flow-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .curriculum-section {
+            background: var(--bg-dark);
+            padding: 80px 0;
+        }
+        .week-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .week-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .week-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #06b6d4 0%, #8b5cf6 100%);
+            transition: width 0.3s;
+        }
+        .week-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+        .week-card:hover::before {
+            width: 10px;
+        }
+        .week-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .week-title {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        .topic-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        .topic-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-dim);
+        }
+        .topic-list li::before {
+            content: "🤖";
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+        .code-preview {
+            background: #1a1a2e;
+            border: 1px solid #16213e;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            overflow-x: auto;
+        }
+        .code-preview pre {
+            margin: 0;
+            color: #f0f0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .code-preview .comment {
+            color: #6a9955;
+        }
+        .code-preview .keyword {
+            color: #569cd6;
+        }
+        .code-preview .string {
+            color: #ce9178;
+        }
+        .code-preview .function {
+            color: #dcdcaa;
+        }
+        .code-preview .decorator {
+            color: #ffd700;
+        }
+        .agent-types {
+            background: var(--bg-darker);
+            padding: 80px 0;
+        }
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .agent-card {
+            background: var(--glass-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        .agent-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(50px, 50px);
+        }
+        .agent-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.4);
+        }
+        .agent-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
+        }
+        .agent-name {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        .capability-list {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .capability-tag {
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid #8b5cf6;
+            padding: 0.3rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #8b5cf6;
+        }
+        .tools-section {
+            background: var(--bg-dark);
+            padding: 80px 0;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .tool-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+        .tool-card:hover::after {
+            transform: scaleX(1);
+        }
+        .tool-logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .architecture-section {
+            background: var(--bg-darker);
+            padding: 80px 0;
+        }
+        .architecture-diagram {
+            background: var(--glass-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #0f0f23 0%, #1f0f3f 100%);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-button-primary {
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            color: white;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .cta-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.5);
+        }
+        .cta-button-secondary {
+            background: transparent;
+            color: var(--accent-color);
+            padding: 1rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .cta-button-secondary:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.5);
+        }
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2.5rem;
+            }
+            .week-title {
+                font-size: 1.4rem;
+            }
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-step::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">
+        <div class="test-banner-content">
+            <span class="blink">●</span> TEST ENVIRONMENT <span class="blink">●</span> This is a demonstration site only
+        </div>
+    </div>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo"><span class="logo-accent">texx</span>.inc</div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="index.html#courses">コース一覧</a></li>
+                        <li><a href="course-ai-product.html">AI開発</a></li>
+                        <li><a href="course-discord.html">Discord開発</a></li>
+                        <li><a href="index.html#contact">お問い合わせ</a></li>
+                    </ul>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="course-hero">
+        <div class="neural-network" id="neuralNetwork"></div>
+        <div class="course-content">
+            <div class="course-header">
+                <h1 class="course-title glitch" data-text="AI AGENT MASTERY">AI AGENT MASTERY</h1>
+                <p class="course-subtitle">LangChain × AutoGPTで自律型AIエージェントを創造する</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">LangChain</span>
+                    <span class="tech-badge">AutoGPT</span>
+                    <span class="tech-badge">Agents</span>
+                    <span class="tech-badge">Function Calling</span>
+                    <span class="tech-badge">ReAct</span>
+                    <span class="tech-badge">Memory Systems</span>
+                    <span class="tech-badge">Tool Integration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="agent-showcase">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="AGENT WORKFLOW">AGENT WORKFLOW</h2>
+            <div class="agent-demo">
+                <h3 style="color: var(--accent-color); margin-bottom: 2rem;">自律型エージェントの動作フロー</h3>
+                <div class="agent-flow">
+                    <div class="flow-step">
+                        <div class="flow-icon">🎯</div>
+                        <h4>Task Planning</h4>
+                        <p>タスクを分析し実行計画を立案</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-icon">🔍</div>
+                        <h4>Tool Selection</h4>
+                        <p>必要なツールを自動選択</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-icon">⚡</div>
+                        <h4>Execution</h4>
+                        <p>計画に基づいて実行</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-icon">🔄</div>
+                        <h4>Self-Reflection</h4>
+                        <p>結果を評価し改善</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="curriculum-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="16 WEEKS JOURNEY">16 WEEKS JOURNEY</h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <span class="week-number">WEEK 1-2</span>
+                    <h3 class="week-title">Foundation: エージェント基礎理論</h3>
+                    <ul class="topic-list">
+                        <li>エージェントアーキテクチャの理解</li>
+                        <li>LangChainフレームワーク入門</li>
+                        <li>プロンプトチェーンとオーケストレーション</li>
+                        <li>メモリシステムの設計と実装</li>
+                        <li>基本的なツール統合</li>
+                    </ul>
+                    <div class="code-preview">
+                        <pre><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> initialize_agent, Tool
+<span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory
+
+<span class="comment"># エージェントの初期化</span>
+memory = ConversationBufferMemory(
+    memory_key=<span class="string">"chat_history"</span>,
+    return_messages=<span class="keyword">True</span>
+)
+
+agent = initialize_agent(
+    tools=tools,
+    llm=llm,
+    agent=<span class="string">"chat-conversational-react-description"</span>,
+    memory=memory,
+    verbose=<span class="keyword">True</span>
+)</pre>
+                    </div>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 3-4</span>
+                    <h3 class="week-title">Advanced Agents: 高度なエージェント設計</h3>
+                    <ul class="topic-list">
+                        <li>ReActパターンの実装</li>
+                        <li>Plan-and-Executeエージェント</li>
+                        <li>Self-Ask with Searchの構築</li>
+                        <li>マルチエージェントシステム</li>
+                        <li>エージェント間通信プロトコル</li>
+                    </ul>
+                    <div class="code-preview">
+                        <pre><span class="decorator">@tool</span>
+<span class="keyword">def</span> <span class="function">complex_analysis</span>(query: str) -> str:
+    <span class="string">"""複雑な分析タスクを実行"""</span>
+    <span class="comment"># 1. データ収集</span>
+    data = collect_data(query)
+    <span class="comment"># 2. 分析実行</span>
+    results = analyze(data)
+    <span class="comment"># 3. レポート生成</span>
+    <span class="keyword">return</span> generate_report(results)</pre>
+                    </div>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 5-6</span>
+                    <h3 class="week-title">AutoGPT & BabyAGI: 自律型システム</h3>
+                    <ul class="topic-list">
+                        <li>AutoGPTアーキテクチャの理解</li>
+                        <li>タスクの自動分解と優先順位付け</li>
+                        <li>長期記憶とベクトルDBの活用</li>
+                        <li>自己改善メカニズムの実装</li>
+                        <li>リソース管理と最適化</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 7-8</span>
+                    <h3 class="week-title">Tool Integration: 外部ツール統合</h3>
+                    <ul class="topic-list">
+                        <li>Web検索とスクレイピング統合</li>
+                        <li>データベース操作の自動化</li>
+                        <li>API連携とWebhook処理</li>
+                        <li>ファイルシステム操作</li>
+                        <li>コード実行環境の安全な統合</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 9-10</span>
+                    <h3 class="week-title">Multi-Agent Systems: 協調システム</h3>
+                    <ul class="topic-list">
+                        <li>エージェントの役割分担設計</li>
+                        <li>階層型エージェントアーキテクチャ</li>
+                        <li>コンセンサスメカニズム</li>
+                        <li>分散タスク処理</li>
+                        <li>エージェント間の知識共有</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 11-12</span>
+                    <h3 class="week-title">Production Systems: 本番環境構築</h3>
+                    <ul class="topic-list">
+                        <li>スケーラブルなエージェント設計</li>
+                        <li>エラーハンドリングとフォールバック</li>
+                        <li>監視とロギングシステム</li>
+                        <li>セキュリティとアクセス制御</li>
+                        <li>パフォーマンス最適化</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 13-14</span>
+                    <h3 class="week-title">Specialized Agents: 特化型エージェント</h3>
+                    <ul class="topic-list">
+                        <li>研究論文読解エージェント</li>
+                        <li>コード生成・レビューエージェント</li>
+                        <li>データ分析エージェント</li>
+                        <li>クリエイティブコンテンツ生成</li>
+                        <li>ビジネスプロセス自動化</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 15-16</span>
+                    <h3 class="week-title">Capstone Project: 総合プロジェクト</h3>
+                    <ul class="topic-list">
+                        <li>エンタープライズ向けエージェント開発</li>
+                        <li>完全自律型アシスタントの構築</li>
+                        <li>業界特化型ソリューション</li>
+                        <li>プレゼンテーションとデモ</li>
+                        <li>実装の商用化準備</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="agent-types">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="AGENT GALLERY">AGENT GALLERY</h2>
+            <div class="agent-grid">
+                <div class="agent-card">
+                    <div class="agent-icon">🔬</div>
+                    <h3 class="agent-name">Research Agent</h3>
+                    <p>学術論文を読み解き、最新の研究動向を分析。複雑な概念を理解し、洞察を提供する研究支援エージェント。</p>
+                    <div class="capability-list">
+                        <span class="capability-tag">論文要約</span>
+                        <span class="capability-tag">引用分析</span>
+                        <span class="capability-tag">トレンド検出</span>
+                        <span class="capability-tag">知識グラフ構築</span>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">💼</div>
+                    <h3 class="agent-name">Business Analyst</h3>
+                    <p>市場データを分析し、ビジネスインサイトを自動生成。戦略立案から実行計画まで包括的にサポート。</p>
+                    <div class="capability-list">
+                        <span class="capability-tag">市場分析</span>
+                        <span class="capability-tag">競合調査</span>
+                        <span class="capability-tag">予測モデリング</span>
+                        <span class="capability-tag">レポート自動生成</span>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">🛠️</div>
+                    <h3 class="agent-name">DevOps Automation</h3>
+                    <p>インフラ管理からデプロイメントまで、DevOpsプロセスを完全自動化。24/7体制で環境を監視・最適化。</p>
+                    <div class="capability-list">
+                        <span class="capability-tag">自動デプロイ</span>
+                        <span class="capability-tag">障害検知</span>
+                        <span class="capability-tag">パフォーマンス最適化</span>
+                        <span class="capability-tag">セキュリティ監査</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="TECH STACK">TECH STACK</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-logo">🔗</div>
+                    <h4>LangChain</h4>
+                    <p>エージェント開発の中核フレームワーク</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">🧠</div>
+                    <h4>AutoGPT</h4>
+                    <p>完全自律型エージェントシステム</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">📊</div>
+                    <h4>Vector Stores</h4>
+                    <p>Pinecone, Weaviate, Chroma</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">🔧</div>
+                    <h4>Tool Libraries</h4>
+                    <p>Selenium, Beautiful Soup, APIs</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">💾</div>
+                    <h4>Memory Systems</h4>
+                    <p>Redis, PostgreSQL, MongoDB</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">🚀</div>
+                    <h4>Deployment</h4>
+                    <p>Docker, Kubernetes, AWS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="architecture-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="ARCHITECTURE">ARCHITECTURE</h2>
+            <div class="architecture-diagram">
+                <h3 style="color: var(--accent-color); margin-bottom: 2rem;">エンタープライズグレード・エージェントアーキテクチャ</h3>
+                <p style="color: var(--text-dim); line-height: 1.8;">
+                    本コースで構築するエージェントシステムは、<br>
+                    <strong>マイクロサービスアーキテクチャ</strong>に基づき、<br>
+                    <strong>スケーラビリティ</strong>と<strong>信頼性</strong>を両立。<br><br>
+                    各エージェントは独立して動作し、<br>
+                    メッセージキューを介して協調動作。<br>
+                    障害時の自動復旧機能も実装。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>AIの真の力を解き放て</h2>
+            <p style="font-size: 1.2rem; color: var(--text-dim); margin-bottom: 3rem;">4ヶ月後、あなたは自律型AIシステムの設計者になる</p>
+            <div class="cta-buttons">
+                <a href="index.html#contact" class="cta-button-primary">今すぐ申し込む</a>
+                <a href="index.html" class="cta-button-secondary">コース一覧に戻る</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 texx.inc - Next Generation AI Education. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="about.html">About</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // ニューラルネットワークアニメーション
+        const neuralNetwork = document.getElementById('neuralNetwork');
+        const neurons = [];
+        const synapses = [];
+
+        // ニューロンを作成
+        for (let i = 0; i < 20; i++) {
+            const neuron = document.createElement('div');
+            neuron.className = 'neuron';
+            neuron.style.left = Math.random() * 100 + '%';
+            neuron.style.top = Math.random() * 100 + '%';
+            neuralNetwork.appendChild(neuron);
+            neurons.push({
+                element: neuron,
+                x: parseFloat(neuron.style.left),
+                y: parseFloat(neuron.style.top)
+            });
+        }
+
+        // シナプスを作成
+        for (let i = 0; i < neurons.length; i++) {
+            for (let j = i + 1; j < neurons.length; j++) {
+                if (Math.random() > 0.7) {
+                    const synapse = document.createElement('div');
+                    synapse.className = 'synapse';
+                    
+                    const dx = neurons[j].x - neurons[i].x;
+                    const dy = neurons[j].y - neurons[i].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    
+                    synapse.style.width = distance + '%';
+                    synapse.style.left = neurons[i].x + '%';
+                    synapse.style.top = neurons[i].y + '%';
+                    synapse.style.transform = `rotate(${angle}deg)`;
+                    
+                    neuralNetwork.appendChild(synapse);
+                    synapses.push(synapse);
+                }
+            }
+        }
+
+        // パルスアニメーション
+        setInterval(() => {
+            const randomNeuron = neurons[Math.floor(Math.random() * neurons.length)];
+            randomNeuron.element.style.boxShadow = '0 0 20px var(--accent-color)';
+            setTimeout(() => {
+                randomNeuron.element.style.boxShadow = '0 0 10px var(--accent-color)';
+            }, 500);
+        }, 1000);
+    </script>
+</body>
+</html>

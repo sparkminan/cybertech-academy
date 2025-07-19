@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成AIプロダクト開発コース - texx.inc</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .course-hero {
+            min-height: 100vh;
+            padding-top: 140px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0f3a 50%, #0f1f3f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .course-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(124, 58, 237, 0.2) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        .course-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .course-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .course-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .course-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .tech-badge {
+            background: var(--glass-bg);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .tech-badge:hover {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        .curriculum-section {
+            background: var(--bg-darker);
+            padding: 80px 0;
+        }
+        .week-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .week-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .week-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient-2);
+            transition: width 0.3s;
+        }
+        .week-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+        .week-card:hover::before {
+            width: 10px;
+        }
+        .week-number {
+            display: inline-block;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .week-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .topic-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        .topic-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-dim);
+        }
+        .topic-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+        }
+        .project-showcase {
+            background: var(--bg-dark);
+            padding: 80px 0;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .project-card {
+            background: var(--glass-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+        }
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .project-name {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .tech-tag {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+        .code-preview {
+            background: #0a0a0a;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            overflow-x: auto;
+        }
+        .code-preview pre {
+            margin: 0;
+            color: #f0f0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .code-preview .comment {
+            color: #6a9955;
+        }
+        .code-preview .keyword {
+            color: #569cd6;
+        }
+        .code-preview .string {
+            color: #ce9178;
+        }
+        .code-preview .function {
+            color: #dcdcaa;
+        }
+        .instructor-section {
+            background: var(--bg-darker);
+            padding: 80px 0;
+        }
+        .instructor-card {
+            background: var(--glass-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 3rem auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .instructor-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .instructor-info {
+            position: relative;
+            z-index: 1;
+        }
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        .career-section {
+            background: var(--bg-dark);
+            padding: 80px 0;
+        }
+        .career-paths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .career-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .career-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
+        }
+        .salary-range {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0f3a 100%);
+            padding: 100px 0;
+            text-align: center;
+        }
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-button-primary {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            padding: 1rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .cta-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+        }
+        .cta-button-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            padding: 1rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .cta-button-secondary:hover {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+        }
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2.5rem;
+            }
+            .week-title {
+                font-size: 1.4rem;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-banner">
+        <div class="test-banner-content">
+            <span class="blink">●</span> TEST ENVIRONMENT <span class="blink">●</span> This is a demonstration site only
+        </div>
+    </div>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo"><span class="logo-accent">texx</span>.inc</div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="index.html#courses">コース一覧</a></li>
+                        <li><a href="course-discord.html">Discord開発</a></li>
+                        <li><a href="course-ai-agent.html">AIエージェント</a></li>
+                        <li><a href="index.html#contact">お問い合わせ</a></li>
+                    </ul>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="course-hero">
+        <div class="course-content">
+            <div class="course-header">
+                <h1 class="course-title glitch" data-text="AI PRODUCT DEVELOPMENT">AI PRODUCT DEVELOPMENT</h1>
+                <p class="course-subtitle">ChatGPT/Claude APIを駆使して次世代プロダクトを創造する</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">OpenAI API</span>
+                    <span class="tech-badge">Claude API</span>
+                    <span class="tech-badge">LangChain</span>
+                    <span class="tech-badge">Vector DB</span>
+                    <span class="tech-badge">Next.js</span>
+                    <span class="tech-badge">FastAPI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="curriculum-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="12 WEEKS CURRICULUM">12 WEEKS CURRICULUM</h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <span class="week-number">WEEK 1-2</span>
+                    <h3 class="week-title">Foundation: LLM基礎とAPI統合</h3>
+                    <ul class="topic-list">
+                        <li>大規模言語モデル(LLM)の仕組みと特性理解</li>
+                        <li>OpenAI API / Anthropic Claude APIの実装</li>
+                        <li>プロンプトエンジニアリングの基礎と応用</li>
+                        <li>トークン管理とコスト最適化戦略</li>
+                        <li>ストリーミングレスポンスの実装</li>
+                    </ul>
+                    <div class="code-preview">
+                        <pre><span class="keyword">import</span> openai
+<span class="keyword">from</span> anthropic <span class="keyword">import</span> Anthropic
+
+<span class="comment"># ストリーミングレスポンスの実装例</span>
+<span class="keyword">async def</span> <span class="function">stream_ai_response</span>(prompt: str):
+    <span class="keyword">async for</span> chunk <span class="keyword">in</span> client.chat.completions.create(
+        model=<span class="string">"gpt-4-turbo"</span>,
+        messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: prompt}],
+        stream=<span class="keyword">True</span>
+    ):
+        <span class="keyword">yield</span> chunk.choices[0].delta.content</pre>
+                    </div>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 3-4</span>
+                    <h3 class="week-title">Advanced: RAGシステム構築</h3>
+                    <ul class="topic-list">
+                        <li>ベクトルデータベース(Pinecone, Weaviate)の活用</li>
+                        <li>埋め込みモデルとセマンティック検索</li>
+                        <li>ドキュメント分割とチャンキング戦略</li>
+                        <li>ハイブリッド検索の実装</li>
+                        <li>RAGパイプラインの最適化</li>
+                    </ul>
+                    <div class="code-preview">
+                        <pre><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> Pinecone
+<span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings
+
+<span class="comment"># RAGシステムの実装</span>
+<span class="keyword">class</span> <span class="function">RAGSystem</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self):
+        self.embeddings = OpenAIEmbeddings()
+        self.vectorstore = Pinecone.from_existing_index(
+            index_name=<span class="string">"knowledge-base"</span>,
+            embedding=self.embeddings
+        )</pre>
+                    </div>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 5-6</span>
+                    <h3 class="week-title">Architecture: スケーラブルAIシステム設計</h3>
+                    <ul class="topic-list">
+                        <li>マイクロサービスアーキテクチャでのAI統合</li>
+                        <li>非同期処理とキューイングシステム</li>
+                        <li>レート制限とフォールバック戦略</li>
+                        <li>分散キャッシングの実装</li>
+                        <li>モニタリングとオブザーバビリティ</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 7-8</span>
+                    <h3 class="week-title">Product: 実践的AIプロダクト開発</h3>
+                    <ul class="topic-list">
+                        <li>AIチャットボットの高度な実装</li>
+                        <li>コンテンツ生成システムの構築</li>
+                        <li>AIを活用したデータ分析ツール</li>
+                        <li>マルチモーダルAIアプリケーション</li>
+                        <li>ユーザーフィードバックループの実装</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 9-10</span>
+                    <h3 class="week-title">Optimization: パフォーマンス最適化</h3>
+                    <ul class="topic-list">
+                        <li>プロンプトチェーンとオーケストレーション</li>
+                        <li>ファインチューニングとモデル最適化</li>
+                        <li>エッジデプロイメント戦略</li>
+                        <li>コスト分析と最適化テクニック</li>
+                        <li>A/Bテストとパフォーマンス測定</li>
+                    </ul>
+                </div>
+
+                <div class="week-card">
+                    <span class="week-number">WEEK 11-12</span>
+                    <h3 class="week-title">Production: 本番環境への展開</h3>
+                    <ul class="topic-list">
+                        <li>CI/CDパイプラインの構築</li>
+                        <li>セキュリティとコンプライアンス対策</li>
+                        <li>スケーリング戦略とロードバランシング</li>
+                        <li>災害復旧とバックアップ戦略</li>
+                        <li>プロダクション環境でのモニタリング</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-showcase">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="PROJECT SHOWCASE">PROJECT SHOWCASE</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-icon">💬</div>
+                    <h3 class="project-name">AI Customer Support</h3>
+                    <p>24時間対応の知的カスタマーサポートシステム。自然言語理解と企業知識ベースを統合し、複雑な問い合わせにも対応。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">GPT-4</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📝</div>
+                    <h3 class="project-name">Content Generation Platform</h3>
+                    <p>SEO最適化されたコンテンツを自動生成。ブログ記事、商品説明、SNS投稿を瞬時に作成する統合プラットフォーム。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Claude</span>
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Vercel</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🔍</div>
+                    <h3 class="project-name">Intelligent Search Engine</h3>
+                    <p>セマンティック検索とAI要約を組み合わせた次世代検索エンジン。ユーザーの意図を理解し、最適な情報を提供。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Embeddings</span>
+                        <span class="tech-tag">Pinecone</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">React</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="instructor-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="LEAD INSTRUCTOR">LEAD INSTRUCTOR</h2>
+            <div class="instructor-card">
+                <div class="instructor-info">
+                    <div class="instructor-avatar">🧠</div>
+                    <h3>Dr. AI Master</h3>
+                    <p class="instructor-title">Senior AI Engineer</p>
+                    <p>元Google Brain研究員。10年以上のAI開発経験を持ち、複数のユニコーン企業でAIプロダクトをリード。LLMの商用利用における第一人者として、実践的な知識を惜しみなく共有します。</p>
+                    <div class="tech-stack" style="margin-top: 2rem;">
+                        <span class="tech-badge">Google</span>
+                        <span class="tech-badge">OpenAI</span>
+                        <span class="tech-badge">Anthropic</span>
+                        <span class="tech-badge">Stanford PhD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="career-section">
+        <div class="container">
+            <h2 class="section-title glitch" data-text="CAREER PATHS">CAREER PATHS</h2>
+            <div class="career-paths">
+                <div class="career-card">
+                    <h3>AI Product Manager</h3>
+                    <p class="salary-range">¥800万 - ¥1,500万</p>
+                    <p>AIプロダクトの企画・開発をリード。技術とビジネスの架け橋として活躍。</p>
+                </div>
+                <div class="career-card">
+                    <h3>AI Solutions Architect</h3>
+                    <p class="salary-range">¥1,000万 - ¥2,000万</p>
+                    <p>企業のAI導入を技術面から支援。大規模システムの設計・構築を担当。</p>
+                </div>
+                <div class="career-card">
+                    <h3>AI Startup Founder</h3>
+                    <p class="salary-range">∞</p>
+                    <p>習得した技術で起業。次世代のAIサービスを創造し、世界を変える。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>AIの未来を、今創ろう</h2>
+            <p style="font-size: 1.2rem; color: var(--text-dim); margin-bottom: 3rem;">3ヶ月後、あなたは最先端のAIエンジニアになる</p>
+            <div class="cta-buttons">
+                <a href="index.html#contact" class="cta-button-primary">今すぐ申し込む</a>
+                <a href="index.html" class="cta-button-secondary">コース一覧に戻る</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 texx.inc - Next Generation AI Education. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="about.html">About</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
