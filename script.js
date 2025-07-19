@@ -181,8 +181,9 @@ function createMatrixEffect() {
     canvas.style.left = '0';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    canvas.style.zIndex = '-1';
+    canvas.style.zIndex = '-100';
     canvas.style.opacity = '0.1';
+    canvas.style.pointerEvents = 'none';
     document.body.appendChild(canvas);
 
     const ctx = canvas.getContext('2d');
@@ -258,16 +259,8 @@ setInterval(() => {
     });
 }, 3000);
 
-// パララックス効果（修正版：heroセクションのみに適用）
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    
-    if (hero) {
-        // heroセクションのみにパララックス効果を適用
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-});
+// パララックス効果を完全に削除（重なり問題の原因）
+// 代わりに背景の視差効果のみを残す
 
 // 価格カードのホバーエフェクト
 document.querySelectorAll('.pricing-item').forEach(item => {
