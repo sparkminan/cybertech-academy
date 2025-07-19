@@ -581,6 +581,206 @@ section {
     cursor: not-allowed;
 }
 
+/* Schedule Section */
+.schedule {
+    background-color: var(--bg-dark);
+    padding: 100px 0;
+}
+
+.schedule-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.schedule-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 3rem;
+    border-radius: 10px;
+}
+
+.schedule-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 20px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -35px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.timeline-item .time {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item h4 {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+/* Pricing */
+.pricing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 3rem;
+    border-radius: 10px;
+}
+
+.pricing-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.pricing-table {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.pricing-item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.pricing-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.pricing-item.featured {
+    border-color: var(--primary-color);
+    position: relative;
+}
+
+.pricing-item.featured::before {
+    content: 'POPULAR';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.pricing-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.pricing-item .price {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.pricing-item .duration {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-item ul {
+    list-style: none;
+}
+
+.pricing-item ul li {
+    padding: 0.5rem 0;
+    color: var(--text-dim);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.pricing-item ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.pricing-note {
+    text-align: center;
+    color: var(--text-dim);
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+/* Company Info */
+.company-info {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.company-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.company-info p {
+    color: var(--text-dim);
+    margin: 0.3rem 0;
+}
+
+/* Course Price */
+.course-price {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--primary-color);
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-align: center;
+}
+
 /* Footer */
 footer {
     background-color: var(--bg-darker);
@@ -588,6 +788,21 @@ footer {
     text-align: center;
     padding: 2rem 0;
     border-top: 1px solid var(--border-color);
+}
+
+.footer-links {
+    margin-top: 1rem;
+}
+
+.footer-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
 }
 
 /* Hamburger Menu */
@@ -662,5 +877,26 @@ footer {
     .features-grid,
     .testimonial-grid {
         grid-template-columns: 1fr;
+    }
+
+    .schedule-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .pricing-table {
+        gap: 1rem;
+    }
+
+    .pricing-item .price {
+        font-size: 2rem;
+    }
+
+    .timeline {
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        left: -25px;
     }
 }
